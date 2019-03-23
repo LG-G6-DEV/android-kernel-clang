@@ -1385,7 +1385,7 @@ static struct msm_vidc_ctrl msm_venc_ctrls[] = {
 		.name = "Set Color space transfer characterstics",
 		.type = V4L2_CTRL_TYPE_INTEGER,
 		.minimum = MSM_VIDC_TRANSFER_BT709_5,
-		.maximum = MSM_VIDC_TRANSFER_HLG,
+		.maximum = MSM_VIDC_TRANSFER_BT_2020_12,
 		.default_value = MSM_VIDC_TRANSFER_601_6_625,
 		.step = 1,
 		.qmenu = NULL,
@@ -1887,9 +1887,6 @@ static inline int start_streaming(struct msm_vidc_inst *inst)
 			"Failed to move inst: %pK to start done state\n", inst);
 		goto fail_start;
 	}
-
-	msm_comm_scale_clocks_and_bus(inst);
-
 	msm_dcvs_init_load(inst);
 
 fail_start:
